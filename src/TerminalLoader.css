@@ -1,0 +1,29 @@
+/* Terminal style */
+.terminal {
+    background-color: black;
+    color: limegreen;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 20px;
+    border-radius: 5px;
+    min-height: 500px;
+    width: 60%;
+    max-width: 800px; /* Adjust as per your design */
+    overflow-y: auto;
+    white-space: pre-wrap;
+}
+
+@keyframes blink {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+.terminal p:last-child::after {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 18px;
+    vertical-align: bottom;
+    background-color: limegreen;
+    margin-left: 5px;
+    animation: blink 1s step-end infinite;
+}

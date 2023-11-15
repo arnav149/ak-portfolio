@@ -1,23 +1,23 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import TerminalLoader from './TerminalLoader.js'
 
 function App() {
+  const [loadingComplete, setLoadingComplete] = useState(false);
+
+  const handleLoadingComplete = () => {
+    setTimeout(() => {
+      setLoadingComplete(true);
+    }, 1000);
+  };
+    
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {!loadingComplete && <TerminalLoader onLoadingComplete={handleLoadingComplete} />}
+      {loadingComplete && 
+        // Your actual app content goes here...
+        <p>HELLO</p>
+      }
     </div>
   );
 }
