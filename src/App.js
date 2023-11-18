@@ -4,6 +4,7 @@ import TerminalLoader from './TerminalLoader.js';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import AboutMe from './AboutMe';
 import NavBar  from './NavBar';
+import Education  from './Education';
 
 function App() {
   const [loadingComplete, setLoadingComplete] = useState(false);
@@ -28,7 +29,7 @@ function App() {
               <NavBar />
               <Routes>
                   <Route path="/" element={<AboutMe />} />
-                  {/* Add other routes here */}
+                  <Route path="/education" element={<Education />} />
               </Routes>
           </div>
         </Router>
