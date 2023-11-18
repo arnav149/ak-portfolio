@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import TerminalLoader from './TerminalLoader.js';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import AboutMe from './AboutMe';
 import NavBar  from './NavBar';
 import Education  from './Education';
