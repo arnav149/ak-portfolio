@@ -1,16 +1,21 @@
-import React from 'react';
-import './AboutMe.css';
+import React from "react";
+import "./AboutMe.css";
 
 const AboutMe = () => {
-    return (
-        <div className="aboutMe">
-            <h1>About Me</h1>
-            <p>
-                Sup?
-            </p>
-            {/* Add more personal details or sections as needed */}
-        </div>
-    );
+  return (
+    <div className="about-me">
+      <div className="profile-picture">
+        <img src={process.env.PUBLIC_URL + "/profile_pic.jpg"} alt="Profile" />
+      </div>
+      <div className="content-card">
+        <h1>About Me</h1>
+        <p>
+          I'm like a vide game character - I level up by drinking coffee and
+          fried chicken.
+        </p>
+      </div>
+    </div>
+  );
 };
 
 export default AboutMe;

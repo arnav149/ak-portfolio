@@ -1,3 +1,32 @@
-.aboutMe {
-    padding-top: 60px;
+.about-me {
+  text-align: center;
+  position: relative; /* This makes it a reference for absolute positioning of children */
+  padding-top: 160px; /* Half of the image height to prevent content overlap */
+}
+
+.profile-picture {
+  position: absolute;
+  top: 60px; /* Height of the navigation bar */
+  left: 50%;
+  transform: translate(-50%, 0%);
+  z-index: 10;
+}
+
+.profile-picture img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 2px solid #333;
+  object-fit: cover;
+  object-position: center bottom;
+}
+
+.content-card {
+  background-color: cyan;
+  padding: 20px;
+  padding-top: 80px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 50%;
+  margin: auto;
 }
