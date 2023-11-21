@@ -10,5 +10,11 @@
   width: 100vw; /* Full viewport width */
   margin: 0; /* Remove default margin */
   padding: 0; /* Remove default padding */
-  background-color: gray;
+  background-color: white;
+}
+
+.appContent {
+  height: 100vh; /* Full viewport height */
+  width: 100vw; /* Full viewport width */
+  background-color: white;
 }
