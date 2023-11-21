@@ -30,3 +30,18 @@
   width: 50%;
   margin: auto;
 }
+
+.social-icons {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.social-icons a {
+  margin: 0 10px;
+  font-size: 24px;
+  color: #000;
+}
+
+.social-icons a:hover {
+  color: #0077b5;
+}
