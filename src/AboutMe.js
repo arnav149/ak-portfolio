@@ -11,7 +11,7 @@ const AboutMe = () => {
         <h1>About Me</h1>
         <p>
           I'm like a vide game character - I level up by drinking coffee and
-          fried chicken.
+          eating fried chicken.
         </p>
       </div>
     </div>
