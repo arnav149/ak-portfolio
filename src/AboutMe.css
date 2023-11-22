@@ -45,3 +45,9 @@
 .social-icons a:hover {
   color: #0077b5;
 }
+
+.loop-text {
+  white-space: pre-line;
+  padding-top: 80px;
+  font-size: 24px;
+}
