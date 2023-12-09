@@ -1,11 +1,25 @@
 .education {
-  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  position: absolute; /* Absolute positioning */
+  top: 50%; /* Position 50% from the top */
+  left: 50%; /* Position 50% from the left */
+  transform: translate(-50%, -50%); /* Adjust position to center */
+  width: 100%;
 }
 
 .asu-logo {
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: auto;
+  margin: auto;
+  height: auto;
+}
+
+.asu-logo img {
+  max-width: 30%; /* Make the image responsive */
   height: auto;
 }
 
@@ -14,20 +28,19 @@
   font-size: 100%;
 }
 
-.asu-logo img {
-  max-width: 30%; /* Make the image responsive */
-  height: auto;
-}
-
 .grad-video-container {
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 30px;
+  width: auto;
+  margin: auto;
+  height: auto;
+  padding-top: 20px;
 }
 
 .grad-video {
-  max-width: 80%;
+  max-width: 90%;
   height: auto;
 }
 
@@ -40,7 +53,7 @@
 
 @media (max-width: 767px) {
   .grad-video {
-    width: 80%; /* Full width on smaller screens */
+    width: 90%; /* Full width on smaller screens */
     height: auto;
   }
 }
