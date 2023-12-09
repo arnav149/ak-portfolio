@@ -1,3 +1,22 @@
 .education {
-    padding-top: 60px;
+  padding-top: 100px;
+}
+
+.asu-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+}
+
+.education-text {
+  padding-left: 20px;
+  font-size: 18px;
+}
+
+.grad-video {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40px;
 }
