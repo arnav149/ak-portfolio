@@ -4,8 +4,10 @@ import "./Education.css";
 const Education = () => {
   return (
     <div className="education">
-      <div className="asu-logo">
-        <img src={process.env.PUBLIC_URL + "/asu-logo.png"} alt="Logo" />
+      <div className="asu-details-container">
+        <div className="asu-logo">
+          <img src={process.env.PUBLIC_URL + "/asu-logo.png"} alt="Logo" />
+        </div>
         <div className="education-text">
           <p>
             Bachelors in <b>Computer Systems Engineering</b>

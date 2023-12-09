@@ -8,7 +8,7 @@
   width: 100%;
 }
 
-.asu-logo {
+.asu-details-container {
   flex: 1;
   display: flex;
   justify-content: center;
@@ -18,13 +18,18 @@
   height: auto;
 }
 
+.asu-logo {
+  flex: 1;
+  text-align: center;
+}
+
 .asu-logo img {
-  max-width: 30%; /* Make the image responsive */
+  max-width: 80%; /* Make the image responsive */
   height: auto;
 }
 
 .education-text {
-  padding-left: 18px;
+  flex: 1;
   font-size: 100%;
 }
 
