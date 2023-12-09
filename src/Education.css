@@ -10,8 +10,13 @@
 }
 
 .education-text {
-  padding-left: 20px;
-  font-size: 18px;
+  padding-left: 18px;
+  font-size: 100%;
+}
+
+.asu-logo img {
+  max-width: 30%; /* Make the image responsive */
+  height: auto;
 }
 
 .grad-video-container {
@@ -22,6 +27,20 @@
 }
 
 .grad-video {
-  width: 45%;
-  height: 30%;
+  max-width: 80%;
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .grad-video {
+    width: 750px; /* Or any suitable size for larger screens */
+    height: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .grad-video {
+    width: 80%; /* Full width on smaller screens */
+    height: auto;
+  }
 }
