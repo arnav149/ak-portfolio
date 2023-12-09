@@ -14,9 +14,14 @@
   font-size: 18px;
 }
 
-.grad-video {
+.grad-video-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 40px;
+  padding-top: 30px;
+}
+
+.grad-video {
+  width: 45%;
+  height: 30%;
 }

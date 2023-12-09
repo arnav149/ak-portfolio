@@ -18,8 +18,8 @@ const Education = () => {
           </p>
         </div>
       </div>
-      <div className="grad-video">
-        <video width={600} height={400} controls={true}>
+      <div className="grad-video-container">
+        <video className="grad-video" controls={true}>
           <source
             src={process.env.PUBLIC_URL + "/grad-video.mp4"}
             type="video/mp4"
