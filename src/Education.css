@@ -1,11 +1,10 @@
 .education {
   display: flex;
   flex-direction: column;
-  position: absolute; /* Absolute positioning */
-  top: 50%; /* Position 50% from the top */
-  left: 50%; /* Position 50% from the left */
-  transform: translate(-50%, -50%); /* Adjust position to center */
+  justify-content: center;
+  align-items: center;
   width: 100%;
+  padding-top: 60px;
 }
 
 .asu-details-container {
@@ -40,8 +39,7 @@
   align-items: center;
   width: auto;
   margin: auto;
-  height: auto;
-  padding-top: 20px;
+  padding-top: 80px;
 }
 
 .grad-video {
@@ -51,7 +49,7 @@
 
 @media (min-width: 768px) {
   .grad-video {
-    width: 750px; /* Or any suitable size for larger screens */
+    width: 50%; /* Or any suitable size for larger screens */
     height: auto;
   }
 }
