@@ -31,10 +31,10 @@
 
 .arrow-button.left {
   left: 0; /* Position to the left edge of the container */
-  margin-left: 10%;
+  margin-left: 5%;
 }
 
 .arrow-button.right {
   right: 0; /* Position to the right edge of the container */
-  margin-right: 10%;
+  margin-right: 5%;
 }
