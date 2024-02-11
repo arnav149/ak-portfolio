@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./Experience.css";
+import "./Projects.css";
 
-const experiences = [
+const projects = [
   {
     id: 1,
     role: "Frontend Developer",
@@ -14,40 +14,39 @@ const experiences = [
     company: "Company B",
     description: "..."
   }
-  // ... other experiences
 ];
 
-const Card = ({ experience }) => (
+const Card = ({ project }) => (
   <div className="card">
     <h3>
-      {experience.role} at {experience.company}
+      {project.role} at {project.company}
     </h3>
-    <p>{experience.description}</p>
+    <p>{project.description}</p>
   </div>
 );
 
-export default function Experience() {
+export default function Projects() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const handlePrev = () => {
     setActiveIndex(prevIndex =>
-      prevIndex > 0 ? prevIndex - 1 : experiences.length - 1
+      prevIndex > 0 ? prevIndex - 1 : projects.length - 1
     );
   };
 
   const handleNext = () => {
     setActiveIndex(prevIndex =>
-      prevIndex < experiences.length - 1 ? prevIndex + 1 : 0
+      prevIndex < projects.length - 1 ? prevIndex + 1 : 0
     );
   };
 
   return (
-    <div className="experience">
+    <div className="projects">
       <div className="carousel-container">
         <button onClick={handlePrev} className="arrow-button left">
           Left
         </button>
-        <Card experience={experiences[activeIndex]} />
+        <Card project={projects[activeIndex]} />
         <button onClick={handleNext} className="arrow-button right">
           Right
         </button>

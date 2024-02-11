@@ -5,7 +5,7 @@ import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import AboutMe from "./AboutMe";
 import NavBar from "./NavBar";
 import Education from "./Education";
-import Experience from "./Experience";
+import Projects from "./Projects";
 
 function App() {
   const [loadingComplete, setLoadingComplete] = useState(false);
@@ -31,7 +31,7 @@ function App() {
             <Routes>
               <Route path="/" element={<AboutMe />} />
               <Route path="/education" element={<Education />} />
-              <Route path="/experience" element={<Experience />} />
+              <Route path="/projects" element={<Projects />} />
             </Routes>
           </div>
         </Router>
