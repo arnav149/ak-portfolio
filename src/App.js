@@ -6,6 +6,7 @@ import AboutMe from "./AboutMe";
 import NavBar from "./NavBar";
 import Education from "./Education";
 import Projects from "./Projects";
+import Experience from "./Experience";
 
 function App() {
   const [loadingComplete, setLoadingComplete] = useState(false);
@@ -32,6 +33,7 @@ function App() {
               <Route path="/" element={<AboutMe />} />
               <Route path="/education" element={<Education />} />
               <Route path="/projects" element={<Projects />} />
+              <Route path="/experience" element={<Experience />} />
             </Routes>
           </div>
         </Router>
