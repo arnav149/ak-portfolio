@@ -1,27 +1,29 @@
 import React, { useState } from "react";
 import "./Projects.css";
+import { MdArrowForward, MdArrowBack } from "react-icons/md";
 
 const projects = [
   {
-    id: 1,
-    role: "Frontend Developer",
-    company: "Company A",
-    description: "..."
+    name: "P1",
+    description: "...",
+    technologies: ["a", "b"]
   },
   {
-    id: 2,
-    role: "Frontend Developer",
-    company: "Company B",
-    description: "..."
+    name: "P2",
+    description: "...",
+    technologies: []
   }
 ];
 
 const Card = ({ project }) => (
-  <div className="card">
-    <h3>
-      {project.role} at {project.company}
-    </h3>
+  <div className="project-card">
+    <h2>{project.name}</h2>
     <p>{project.description}</p>
+    <ul>
+      {project.technologies.map((tech, index) => (
+        <li key={index}>{tech}</li>
+      ))}
+    </ul>
   </div>
 );
 
@@ -43,13 +45,15 @@ export default function Projects() {
   return (
     <div className="projects">
       <div className="carousel-container">
-        <button onClick={handlePrev} className="arrow-button left">
-          Left
-        </button>
         <Card project={projects[activeIndex]} />
-        <button onClick={handleNext} className="arrow-button right">
-          Right
-        </button>
+        <div className="card-buttons">
+          <button onClick={handleNext} className="button">
+            <MdArrowBack />
+          </button>
+          <button onClick={handleNext} className="button">
+            <MdArrowForward />
+          </button>
+        </div>
       </div>
     </div>
   );
