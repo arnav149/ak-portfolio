@@ -25,6 +25,12 @@
   margin-bottom: 20px;
 }
 
+.experience-card > h3 {
+  margin-bottom: 10px; /* Add space between company name and roles */
+  margin-left: 5px;
+  font-size: 1.5em; /* Make company name larger */
+}
+
 .card-item {
   position: relative;
   padding-left: 40px; /* Adjust if needed to give more space around the dot */
