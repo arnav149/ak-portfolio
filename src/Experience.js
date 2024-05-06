@@ -35,7 +35,9 @@ const ExperienceCard = ({ company }) => {
         <div key={index} className="card-item">
           <div className="period">{role.period}</div>
           <h4>{role.title}</h4>
-          {renderDescription(role.description)}
+          <div className="descriptions">
+            {renderDescription(role.description)}
+          </div>
         </div>
       ))}
     </div>
@@ -50,12 +52,13 @@ export default function Experience() {
         {
           title: "Job Title 1",
           period: "Jan 2020 - Dec 2020",
-          description: "Description of your role and achievements."
+          description: ["Description of your role and achievements."]
         },
         {
           title: "Job Title 2",
           period: "Jan 2021 - Dec 2021",
-          description: "Description of another role and achievements."
+          description:
+            "Description of another role and achievements. Description of another role and achievements."
         }
       ]
     },
