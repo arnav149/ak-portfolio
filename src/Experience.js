@@ -1,11 +1,11 @@
 import React from "react";
 import "./Experience.css";
 
-const ScrollableCard = ({ experiences }) => {
+const ExperienceCard = ({ experiences }) => {
   return (
-    <div className="scrollable-card">
+    <div className="experience-card">
       {experiences.map((experience, index) => (
-        <div key={index} className="card-tem">
+        <div key={index} className="card-item">
           <h4>{experience.title}</h4>
           <p>{experience.period}</p>
           <p>{experience.description}</p>
@@ -41,8 +41,10 @@ export default function Experience() {
   ];
 
   return (
-    <div className="experience">
-      <ScrollableCard experiences={experiences} />
+    <div className="experience-container">
+      <div className="experience">
+        <ExperienceCard experiences={experiences} />
+      </div>
     </div>
   );
 }
