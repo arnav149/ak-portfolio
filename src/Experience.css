@@ -41,3 +41,12 @@
   border-radius: 50%;
   transform: translateX(-50%); /* Center the dot over the line */
 }
+
+.period {
+  position: absolute;
+  left: -170px; /* Adjust this value based on your layout needs */
+  top: 8px; /* Aligns vertically with the dot */
+  width: 140px; /* Ensure there is enough room for the text */
+  text-align: right; /* Right align the text to flow towards the dot */
+  white-space: nowrap; /* Prevents the text from wrapping */
+}

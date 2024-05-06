@@ -6,8 +6,8 @@ const ExperienceCard = ({ experiences }) => {
     <div className="experience-card">
       {experiences.map((experience, index) => (
         <div key={index} className="card-item">
+          <div className="period">{experience.period}</div>
           <h4>{experience.title}</h4>
-          <p>{experience.period}</p>
           <p>{experience.description}</p>
         </div>
       ))}
