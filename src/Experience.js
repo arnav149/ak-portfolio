@@ -1,6 +1,32 @@
 import React from "react";
 import "./Experience.css";
 
+const renderDescription = description => {
+  if (Array.isArray(description)) {
+    return (
+      <ul>
+        {description.map((item, index) => (
+          <li key={index}>
+            {typeof item === "object" ? (
+              <>
+                {item.text}
+                <ul>
+                  {item.subItems.map((subItem, subIndex) => (
+                    <li key={subIndex}>{subItem}</li>
+                  ))}
+                </ul>
+              </>
+            ) : (
+              item
+            )}
+          </li>
+        ))}
+      </ul>
+    );
+  }
+  return <p>{description}</p>;
+};
+
 const ExperienceCard = ({ company }) => {
   return (
     <div className="experience-card">
@@ -9,7 +35,7 @@ const ExperienceCard = ({ company }) => {
         <div key={index} className="card-item">
           <div className="period">{role.period}</div>
           <h4>{role.title}</h4>
-          <p>{role.description}</p>
+          {renderDescription(role.description)}
         </div>
       ))}
     </div>
