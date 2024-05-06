@@ -15,7 +15,7 @@
   content: "";
   position: absolute;
   top: 0;
-  left: 19px; /* Adjust this value to center the line in the padding area */
+  left: 20px; /* Adjust this value to center the line in the padding area */
   height: 100%;
   width: 2px;
   background-color: #333;
@@ -50,9 +50,9 @@
 
 .period {
   position: absolute;
-  left: -170px; /* Adjust this value based on your layout needs */
-  top: 8px; /* Aligns vertically with the dot */
-  width: 140px; /* Ensure there is enough room for the text */
-  text-align: right; /* Right align the text to flow towards the dot */
-  white-space: nowrap; /* Prevents the text from wrapping */
+  left: -210px; /* Adjust based on your layout */
+  top: 5px;
+  width: 200px; /* Ensure this width accommodates your longest period text */
+  text-align: right;
+  white-space: nowrap;
 }
