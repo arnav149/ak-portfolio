@@ -1,14 +1,17 @@
 .experience-container {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
+  align-items: flex-start;
+  padding-top: 60px;
+  /* height: 100vh; */
   width: 100%;
 }
 
 .experience {
   position: relative;
   padding-left: 140px;
+  width: 60%;
+  margin: auto;
 }
 
 .experience::before {
@@ -25,11 +28,12 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
+  width: 90%;
 }
 
 .card-item {
   position: relative;
-  padding-left: 10px;
+  padding-left: 20px;
 }
 
 .card-item::before {
@@ -46,9 +50,9 @@
 
 .period {
   position: absolute;
-  left: -230px;
+  left: -140px; /* Adjust as needed */
+  width: 100px; /* Adjust as needed */
   top: 21px;
-  width: 200px;
   text-align: right;
 }
 
@@ -62,15 +66,38 @@
   list-style-type: disc;
 }
 
+.descriptions ul li {
+  padding-bottom: 2%;
+}
+
+ul.unfilled-bullet {
+  list-style-type: circle;
+  padding-top: 2%;
+}
+
 @media screen and (max-width: 900px) {
+  .experience-container {
+    /* padding-top: 300px; */
+    font-size: 14px;
+  }
+  .experience {
+    width: 100%;
+  }
   .period {
     left: -140px; /* Adjust as needed */
     width: 100px; /* Adjust as needed */
+  }
+  .descriptions p,
+  .descriptions ul {
+    margin-top: 0;
+    padding-left: 20px;
+    padding-bottom: 5%;
   }
 }
 
 @media screen and (min-width: 900px) {
   .period {
-    white-space: nowrap;
+    left: -140px; /* Adjust as needed */
+    width: 100px; /* Adjust as needed */
   }
 }
