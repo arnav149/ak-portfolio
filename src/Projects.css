@@ -38,17 +38,12 @@
   margin-top: 0;
 }
 
-.project-card p {
-  font-size: 16px;
-  line-height: 1.5;
-}
-
-.project-card ul {
+.technologies ul {
   list-style: none;
   padding: 0;
 }
 
-.project-card li {
+.technologies li {
   background-color: #23272a; /* Slightly darker background for list items */
   padding: 5px 10px;
   margin-top: 5px;
