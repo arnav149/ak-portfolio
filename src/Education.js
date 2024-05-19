@@ -21,7 +21,11 @@ const Education = () => {
         </div>
       </div>
       <div className="grad-video-container">
-        <video className="grad-video" controls={true}>
+        <video
+          className="grad-video"
+          controls={true}
+          poster={process.env.PUBLIC_URL + "/poster-image.png"}
+        >
           <source
             src={process.env.PUBLIC_URL + "/grad-video.mp4"}
             type="video/mp4"
