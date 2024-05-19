@@ -25,8 +25,8 @@
 } */
 
 .project-card {
-  background-color: #2c2f33; /* Discord dark theme background color */
-  color: #ffffff;
+  background-color: whitesmoke;
+  /* color: #ffffff; */
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -44,7 +44,7 @@
 }
 
 .technologies li {
-  background-color: #23272a; /* Slightly darker background for list items */
+  background-color: #dcdcdc; /* Slightly darker background for list items */
   padding: 5px 10px;
   margin-top: 5px;
   border-radius: 4px;
@@ -58,8 +58,8 @@
 }
 
 .button {
-  background-color: #546e7a; /* Bright Cyan for visibility */
-  color: white; /* White text for contrast */
+  background-color: #708090;
+  color: white;
   border: none; /* No border for a modern look */
   padding: 10px 20px; /* Adequate padding for clickable area */
   border-radius: 5px; /* Rounded corners for a softer look */
