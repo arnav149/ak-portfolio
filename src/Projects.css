@@ -1,9 +1,12 @@
+/* Dark mode styles inspired by GitHub dark theme */
 .projects {
   display: flex;
   justify-content: center;
   align-items: center;
   height: calc(100vh - 60px);
   padding-top: 60px;
+  background-color: #0d1117; /* Dark background */
+  color: #c9d1d9; /* Light text color */
 }
 
 .collapsible-container {
@@ -13,30 +16,27 @@
 /* CollapsibleList.css */
 .collapsible-header {
   cursor: pointer;
-  background-color: #708090;
-  color: white;
+  background-color: #161b22; /* Darker background for collapsible headers */
+  color: #c9d1d9; /* Light text color */
   padding: 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: 5px;
+  border-radius: 6px;
   margin: 10px 0;
   transition: background-color 0.3s ease;
 }
 
 .collapsible-header:hover {
-  background-color: #6882a3;
+  background-color: #21262d; /* Slightly lighter dark background on hover */
 }
 
 .collapsible-content {
-  /* padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: auto; */
-  background-color: whitesmoke;
+  background-color: #0d1117; /* Dark background for collapsible content */
+  color: #c9d1d9; /* Light text color */
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(1, 4, 9, 0.4); /* Darker shadow */
   margin: auto;
 }
 
@@ -54,10 +54,11 @@
 
 .technologies ul li {
   list-style: none;
-  background-color: #dcdcdc; /* Slightly darker background for list items */
+  background-color: #161b22; /* Darker background for list items */
+  color: #c9d1d9; /* Light text color */
   padding: 5px 10px;
   margin-top: 5px;
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
 .collapsible-content ul li:last-child {

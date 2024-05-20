@@ -1,9 +1,13 @@
+/* Dark mode styles inspired by GitHub dark theme */
 .education {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  height: calc(100vh - 60px);
   width: 100%;
+  background-color: #0d1117; /* Dark background */
+  color: #c9d1d9; /* Light text color */
   padding-top: 60px;
 }
 
@@ -30,16 +34,17 @@
 .education-text {
   flex: 1;
   font-size: 100%;
+  color: #c9d1d9; /* Light text color */
 }
 
 .grad-video-container {
-  flex: 1;
+  flex: 2;
   display: flex;
   justify-content: center;
   align-items: center;
   width: auto;
   margin: auto;
-  padding-top: 80px;
+  align-items: center;
 }
 
 .grad-video {
@@ -47,14 +52,20 @@
   height: auto;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 720px) {
   .grad-video {
     width: 50%; /* Or any suitable size for larger screens */
     height: auto;
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 720px) {
+  .asu-details-container {
+    width: 85%;
+  }
+  .grad-video-container {
+    margin-bottom: 20%;
+  }
   .grad-video {
     width: 90%; /* Full width on smaller screens */
     height: auto;

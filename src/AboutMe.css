@@ -1,7 +1,11 @@
+/* Dark mode styles inspired by GitHub dark theme */
 .about-me {
   text-align: center;
   position: relative; /* This makes it a reference for absolute positioning of children */
-  padding-top: 160px; /* Half of the image height to prevent content overlap */
+  padding-top: 160px;
+  background-color: #0d1117; /* Dark background */
+  color: #c9d1d9; /* Light text color */
+  height: calc(100vh - 160px);
 }
 
 .profile-picture {
@@ -16,19 +20,24 @@
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  border: 2px solid #333;
+  border: 2px solid #c9d1d9; /* Light border to match text color */
   object-fit: cover;
   object-position: center top;
 }
 
 .content-card {
-  background-color: whitesmoke;
+  background-color: #161b22; /* Darker background for content card */
+  color: #c9d1d9; /* Light text color */
   padding: 20px;
   padding-top: 80px;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(1, 4, 9, 0.4); /* Darker shadow */
   width: 50%;
   margin: auto;
+}
+
+.content-card p {
+  padding-top: 20px;
 }
 
 .social-icons {
@@ -39,15 +48,16 @@
 .social-icons a {
   margin: 0 10px;
   font-size: 24px;
-  color: #000;
+  color: #c9d1d9; /* Light text color */
 }
 
 .social-icons a:hover {
-  color: #0077b5;
+  color: #58a6ff; /* Brighter color on hover, similar to GitHub's link color */
 }
 
 .loop-text {
   white-space: pre-line;
   padding-top: 80px;
   font-size: 24px;
+  color: #c9d1d9; /* Light text color */
 }

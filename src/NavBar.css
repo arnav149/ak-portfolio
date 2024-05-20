@@ -1,5 +1,6 @@
+/* Nav bar styles */
 nav {
-  background-color: black; /* Background color */
+  background-color: #161b22; /* Darker background for the nav bar */
   overflow: hidden; /* Clears floats */
   position: fixed; /* Fixed position at the top */
   top: 0; /* Position at the top */
@@ -20,12 +21,13 @@ nav li {
 
 nav a {
   display: inline-block; /* Display as block element */
-  color: white; /* Text color */
+  color: #c9d1d9; /* Light text color */
   text-align: center; /* Center text */
   padding: 14px 16px; /* Padding for spacing */
   text-decoration: none; /* No underline */
 }
 
 nav a:hover {
-  background-color: #111; /* Color on hover */
+  background-color: #21262d; /* Slightly lighter dark background on hover */
+  color: #ffffff; /* Brighter text color on hover */
 }
