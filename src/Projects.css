@@ -2,71 +2,64 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(
-    100vh - 60px
-  ); /* Full viewport height minus the nav bar height */
+  height: calc(100vh - 60px);
   padding-top: 60px;
-  /* background-color: #2c3e50; */
 }
 
-.carousel-container {
-  position: relative;
-  width: 100%;
+.collapsible-container {
+  width: 70%;
 }
 
-/* .card {
-  background-color: whitesmoke;
-  padding: 20px;
-  padding-top: 80px;
-  border-radius: 10px;
+/* CollapsibleList.css */
+.collapsible-header {
+  cursor: pointer;
+  background-color: #708090;
+  color: white;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  margin: 10px 0;
+  transition: background-color 0.3s ease;
+}
+
+.collapsible-header:hover {
+  background-color: #6882a3;
+}
+
+.collapsible-content {
+  /* padding: 20px;
+  border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 50%;
-  margin: auto;
-} */
-
-.project-card {
+  margin: auto; */
   background-color: whitesmoke;
-  /* color: #ffffff; */
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 50%;
   margin: auto;
 }
 
-.project-card h2 {
-  margin-top: 0;
+.description ul {
+  padding-left: 10px;
+}
+
+.description ul li {
+  margin-top: 5px;
 }
 
 .technologies ul {
-  list-style: none;
-  padding: 0;
+  padding-left: 0;
 }
 
-.technologies li {
+.technologies ul li {
+  list-style: none;
   background-color: #dcdcdc; /* Slightly darker background for list items */
   padding: 5px 10px;
   margin-top: 5px;
   border-radius: 4px;
 }
 
-.card-buttons {
-  display: flex;
-  justify-content: center; /* Align buttons to the center */
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.button {
-  background-color: #708090;
-  color: white;
-  border: none; /* No border for a modern look */
-  padding: 10px 20px; /* Adequate padding for clickable area */
-  border-radius: 5px; /* Rounded corners for a softer look */
-  cursor: pointer; /* Pointer cursor on hover */
-  transition: background-color 0.3s; /* Smooth transition for hover effect */
-}
-
-.button:hover {
-  background-color: #718792; /* A darker shade of the button color on hover */
+.collapsible-content ul li:last-child {
+  border-bottom: none;
 }

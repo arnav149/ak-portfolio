@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Projects.css";
-import { MdArrowForward, MdArrowBack } from "react-icons/md";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 const projects = [
   {
@@ -55,48 +55,46 @@ const renderDescription = description => {
   return <p>{description}</p>;
 };
 
-const Card = ({ project }) => (
-  <div className="project-card">
-    <h2>{project.name}</h2>
-    {renderDescription(project.description)}
-    <div className="technologies">
-      <ul>
-        {project.technologies.map((tech, index) => (
-          <li key={index}>{tech}</li>
-        ))}
-      </ul>
-    </div>
-  </div>
-);
+const CollapsibleList = ({ items }) => {
+  const [openIndex, setOpenIndex] = useState(0); // Default to the first item being open
 
-export default function Projects() {
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const handlePrev = () => {
-    setActiveIndex(prevIndex =>
-      prevIndex > 0 ? prevIndex - 1 : projects.length - 1
-    );
-  };
-
-  const handleNext = () => {
-    setActiveIndex(prevIndex =>
-      prevIndex < projects.length - 1 ? prevIndex + 1 : 0
-    );
+  const toggleItem = index => {
+    // if (openIndex === index) return;
+    setOpenIndex(prevOpenIndex => (prevOpenIndex === index ? null : index));
   };
 
   return (
-    <div className="projects">
-      <div className="carousel-container">
-        <Card project={projects[activeIndex]} />
-        <div className="card-buttons">
-          <button onClick={handleNext} className="button">
-            <MdArrowBack />
-          </button>
-          <button onClick={handleNext} className="button">
-            <MdArrowForward />
-          </button>
+    <div className="collapsible-container">
+      {items.map((item, index) => (
+        <div key={index}>
+          <div onClick={() => toggleItem(index)} className="collapsible-header">
+            {item.name}
+            {openIndex === index ? <FaChevronUp /> : <FaChevronDown />}
+          </div>
+          {openIndex === index && (
+            <div className="collapsible-content">
+              <div className="description">
+                {renderDescription(item.description)}
+              </div>
+              <div className="technologies">
+                <ul>
+                  {item.technologies.map((technology, i) => (
+                    <li key={i}>{technology}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          )}
         </div>
-      </div>
+      ))}
+    </div>
+  );
+};
+
+export default function Projects() {
+  return (
+    <div className="projects">
+      <CollapsibleList items={projects} />
     </div>
   );
 }
