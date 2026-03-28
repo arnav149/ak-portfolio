@@ -16,7 +16,7 @@ const Education = () => {
             Graduated <b>December 2021</b>
           </p>
           <p>
-            GPA: <b>4.0</b>
+            GPA: <b>4.0</b> (Moeur Award Winner)
           </p>
         </div>
       </div>

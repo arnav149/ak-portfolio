@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './TerminalLoader.css'; // import your CSS file
 
+const prefix = 'coolperson@cool-device ~ % ';
+
 const TerminalLoader = ({ onLoadingComplete }) => {
   const [text, setText] = useState('');
-  var prefix = 'coolperson@cool-device ~ % ';
   const [commandIndex, setCommandIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
   

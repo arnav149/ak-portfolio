@@ -9,21 +9,22 @@ import {
 import { FaBowlFood } from "react-icons/fa6";
 import "./AboutMe.css";
 
+const elements = [
+  "Eat.",
+  <FaBowlFood key="food" />,
+  "\n",
+  "Sleep.",
+  <FaBed key="bed" />,
+  "\n",
+  "Debug.",
+  <FaBug key="bug" />,
+  "\n",
+  "Repeat.",
+  <FaRedoAlt key="redo" />,
+  "\n"
+];
+
 const AboutMe = () => {
-  const elements = [
-    "Eat.",
-    <FaBowlFood key="food" />,
-    "\n",
-    "Sleep.",
-    <FaBed key="bed" />,
-    "\n",
-    "Debug.",
-    <FaBug key="bug" />,
-    "\n",
-    "Repeat.",
-    <FaRedoAlt key="redo" />,
-    "\n"
-  ];
   const [index, setIndex] = useState(0);
   const [visibleElements, setVisibleElements] = useState([]);
 
