@@ -5,6 +5,26 @@ const LIKE_DISTANCE = 110; // px dragged right to count as a like
 const REFUSE_DISTANCE = 90; // px dragged left to count as a (denied) left swipe
 const FLICK_VELOCITY = 0.55; // px/ms; a fast flick counts even if short
 const EXIT_MS = 340;
+const WHEEL_IDLE_MS = 140; // a trackpad gesture is over once wheel events stop for this long
+
+// Trackpads keep sending momentum wheel events after the fingers lift, and
+// they can land anywhere (the flying card ignores pointer input). After a card
+// is decided, ignore wheel input until the whole stream goes quiet, so one
+// gesture can never decide the next card too. A window-level listener tracks
+// the stream because the events don't always reach a card.
+let wheelLocked = false;
+let lastWheelAt = 0;
+if (typeof window !== "undefined") {
+  window.addEventListener(
+    "wheel",
+    () => {
+      const now = performance.now();
+      if (wheelLocked && now - lastWheelAt > WHEEL_IDLE_MS) wheelLocked = false;
+      lastWheelAt = now;
+    },
+    { capture: true, passive: true }
+  );
+}
 
 const prefersReducedMotion = () =>
   typeof window !== "undefined" && window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -82,6 +102,51 @@ const SwipeCard = forwardRef(function SwipeCard({ card, position, onLiked, onRef
   }, [onRefused, settle, shake]);
 
   useImperativeHandle(ref, () => ({ like, refuse }), [like, refuse]);
+
+  // Two-finger horizontal swipes on a trackpad arrive as wheel events, not
+  // pointer events. With natural scrolling, fingers moving right give a
+  // negative deltaX, so the card follows -deltaX. A native, non-passive
+  // listener is needed to preventDefault, which also stops Chrome's
+  // swipe-to-go-back gesture over the card.
+  useEffect(() => {
+    const node = el.current;
+    if (!node) return;
+    let travel = 0;
+    let idle = 0;
+
+    const decide = () => {
+      idle = 0;
+      const t = travel;
+      travel = 0;
+      node.classList.remove("is-dragging");
+      if (t > LIKE_DISTANCE || t < -REFUSE_DISTANCE) wheelLocked = true;
+      if (t > LIKE_DISTANCE) like();
+      else if (t < -REFUSE_DISTANCE) refuse();
+      else settle();
+    };
+
+    const onWheel = e => {
+      if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return; // vertical: let the page scroll
+      e.preventDefault();
+      if (busy.current || drag.current || wheelLocked) return;
+      const unit = e.deltaMode === 1 ? 16 : 1; // lines -> px
+      travel -= e.deltaX * unit;
+      node.classList.remove("is-settling");
+      node.classList.add("is-dragging");
+      cancelAnimationFrame(frame.current);
+      frame.current = requestAnimationFrame(() => paint(travel));
+      clearTimeout(idle);
+      // Commit early on a long swipe so it feels responsive; otherwise decide when the gesture ends.
+      if (travel > LIKE_DISTANCE * 1.6 || travel < -REFUSE_DISTANCE * 1.6) decide();
+      else idle = setTimeout(decide, WHEEL_IDLE_MS);
+    };
+
+    node.addEventListener("wheel", onWheel, { passive: false });
+    return () => {
+      node.removeEventListener("wheel", onWheel);
+      clearTimeout(idle);
+    };
+  }, [like, refuse, settle, paint]);
 
   const onPointerDown = e => {
     if (busy.current || drag.current) return;

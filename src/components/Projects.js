@@ -147,26 +147,25 @@ export default function Projects() {
       {mode === "swipe" ? (
         <div className="deckwrap">
           <div className="deck-col">
-            <div className="bubble-slot" aria-live="polite">
-              {last === "refuse" && (
-                <div key={tick} className="bubble bubble--refuse">
-                  <div className="bubble__meta">swipe_left() → denied ({refusals})</div>
-                  {leftSwipeMessages[(refusals - 1) % leftSwipeMessages.length]}
-                </div>
-              )}
-              {last === "like" && lastLiked && (
-                <div key={tick} className="bubble bubble--like">
-                  ♥ {lastLiked.name} → ~/liked
-                </div>
-              )}
-            </div>
-
             <div
               className="deck"
               tabIndex={0}
               onKeyDown={onDeckKey}
               aria-label="Project cards. Use the right arrow to like and the left arrow to swipe left."
             >
+              <div className="bubble-slot" aria-live="polite">
+                {last === "refuse" && (
+                  <div key={tick} className="bubble bubble--refuse">
+                    <div className="bubble__meta">swipe_left() → denied ({refusals})</div>
+                    {leftSwipeMessages[(refusals - 1) % leftSwipeMessages.length]}
+                  </div>
+                )}
+                {last === "like" && lastLiked && (
+                  <div key={tick} className="bubble bubble--like">
+                    ♥ {lastLiked.name} → ~/liked
+                  </div>
+                )}
+              </div>
               {next && (
                 <div className="swipe-card swipe-card--ghost" aria-hidden="true">
                   <div className="swipe-card__body">
@@ -322,6 +321,7 @@ export default function Projects() {
                 <li>
                   Swipe <b className="pink">right</b> if you like the project.
                 </li>
+                <li>Drag the card, two-finger swipe on a trackpad, or use the ← → keys.</li>
                 <li>
                   Swipe <b className="amber">left</b> if you don’t.{" "}
                   <span className="muted">(We’ll see about that.)</span>

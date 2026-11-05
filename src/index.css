@@ -25,6 +25,8 @@
 }
 
 html {
+  /* stop horizontal trackpad swipes from triggering browser back/forward */
+  overscroll-behavior-x: none;
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-h) + 16px);
 }

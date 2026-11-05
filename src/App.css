@@ -292,8 +292,18 @@
 /* ---------- swipe deck ---------- */
 .deckwrap { display: flex; gap: 56px; align-items: flex-start; flex-wrap: wrap; }
 .deck-col { display: flex; flex-direction: column; align-items: center; gap: 20px; flex: 0 0 auto; width: 380px; max-width: 100%; }
-.bubble-slot { min-height: 72px; width: 100%; display: flex; align-items: flex-end; justify-content: center; }
-.bubble { animation: pop 420ms var(--ease-out) both; text-align: center; }
+/* message toast: floats over the top of the card so it never shifts the layout */
+.bubble-slot {
+  position: absolute;
+  top: 18px;
+  left: 16px;
+  right: 16px;
+  z-index: 8;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+.bubble { text-align: center; animation: pop 420ms var(--ease-out) both, toastOut 400ms ease 3200ms forwards; }
 .bubble--refuse {
   position: relative;
   background: var(--amber);
@@ -301,17 +311,7 @@
   border-radius: 14px;
   padding: 12px 16px;
   font: 600 15px var(--sans);
-  box-shadow: 0 10px 30px rgba(227, 179, 65, 0.25);
-}
-.bubble--refuse::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -7px;
-  width: 14px;
-  height: 14px;
-  background: var(--amber);
-  transform: translateX(-50%) rotate(45deg);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
 }
 .bubble__meta { font: 500 11px var(--mono); opacity: 0.75; margin-bottom: 2px; }
 .bubble--like { background: var(--panel); border: 1px solid var(--pink); color: var(--pink); border-radius: 999px; padding: 10px 16px; font-size: 14px; }
@@ -570,6 +570,7 @@
   55% { transform: translateX(-8px) rotate(-1deg); }
   75% { transform: translateX(5px); }
 }
+@keyframes toastOut { to { opacity: 0; transform: translateY(-6px); } }
 @keyframes pop {
   0% { opacity: 0; transform: translateY(10px) scale(0.8); }
   60% { opacity: 1; transform: translateY(-3px) scale(1.04); }
