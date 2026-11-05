@@ -14,7 +14,7 @@ Builds the app for production to the `build/` folder.
 
 ### `npm run deploy`
 
-Builds the app and deploys it to the `gh-pages` branch via `git subtree`, which GitHub Pages serves automatically.
+Builds the app and publishes `build/` to the `gh-pages` branch with the `gh-pages` package; GitHub Pages serves that branch.
 
 ## Editing content
 
