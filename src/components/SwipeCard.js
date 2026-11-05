@@ -1,9 +1,13 @@
 import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useRef } from "react";
 
 // Thresholds are measured on the finger/mouse travel, not on the (resisted) card offset.
-const LIKE_DISTANCE = 110; // px dragged right to count as a like
-const REFUSE_DISTANCE = 90; // px dragged left to count as a (denied) left swipe
-const FLICK_VELOCITY = 0.55; // px/ms; a fast flick counts even if short
+const LIKE_DISTANCE = 80; // px dragged right to count as a like
+const REFUSE_DISTANCE = 70; // px dragged left to count as a (denied) left swipe
+const FLICK_VELOCITY = 0.3; // px/ms; a quick swipe counts even if short...
+const FLICK_MIN = 30; // ...as long as it travelled at least this far
+const VELOCITY_WINDOW_MS = 100; // speed is measured over the last part of the gesture, not one sample
+const QUICK_MIN = 50; // a swipe that was fast at any point counts from here, unless it was pulled back
+const PULLBACK = 20; // px the pointer may drift back from its furthest point and still count
 const EXIT_MS = 340;
 const WHEEL_IDLE_MS = 140; // a trackpad gesture is over once wheel events stop for this long
 
@@ -36,7 +40,7 @@ const prefersReducedMotion = () =>
  */
 const SwipeCard = forwardRef(function SwipeCard({ card, position, onLiked, onRefused }, ref) {
   const el = useRef(null);
-  const drag = useRef(null); // { id, x0, raw, lastX, lastT, vx }
+  const drag = useRef(null); // { id, x0, raw, min, max, peak, samples: [{ x, t }] }
   const busy = useRef(false); // true while flying out
   const frame = useRef(0);
   const exitTimer = useRef(0);
@@ -158,34 +162,65 @@ const SwipeCard = forwardRef(function SwipeCard({ card, position, onLiked, onRef
     } catch (_) {
       /* some browsers throw for synthetic pointers */
     }
-    const now = performance.now();
-    drag.current = { id: e.pointerId, x0: e.clientX, raw: 0, lastX: e.clientX, lastT: now, vx: 0 };
+    drag.current = {
+      id: e.pointerId,
+      x0: e.clientX,
+      raw: 0,
+      min: 0,
+      max: 0,
+      peak: 0,
+      samples: [{ x: e.clientX, t: performance.now() }]
+    };
     node.classList.add("is-dragging");
   };
 
   const onPointerMove = e => {
     const d = drag.current;
     if (!d || e.pointerId !== d.id) return;
-    const now = performance.now();
-    d.raw = e.clientX - d.x0;
-    const dt = now - d.lastT;
-    if (dt > 0) d.vx = 0.8 * ((e.clientX - d.lastX) / dt) + 0.2 * d.vx;
-    d.lastX = e.clientX;
-    d.lastT = now;
+    track(d, e.clientX);
     cancelAnimationFrame(frame.current);
     frame.current = requestAnimationFrame(() => paint(d.raw));
   };
 
+  const track = (d, x) => {
+    const now = performance.now();
+    d.raw = x - d.x0;
+    d.samples.push({ x, t: now });
+    // keep a little more than the window so there is always a sample at its start
+    while (d.samples.length > 2 && now - d.samples[1].t > VELOCITY_WINDOW_MS) d.samples.shift();
+    d.max = Math.max(d.max, d.raw);
+    d.min = Math.min(d.min, d.raw);
+    // Only trust a top speed measured over enough movement; the first few ms of a drag are noisy.
+    if (now - d.samples[0].t >= 50) {
+      const v = velocity(d);
+      if (Math.abs(v) > Math.abs(d.peak)) d.peak = v;
+    }
+  };
+
+  // Average speed over the last ~100ms. A single last-sample speed made quick
+  // swipes snap back at random, because a finger slows down just before it lifts.
+  const velocity = d => {
+    const a = d.samples[0];
+    const b = d.samples[d.samples.length - 1];
+    const dt = b.t - a.t;
+    return dt > 0 ? (b.x - a.x) / Math.max(dt, 16) : 0;
+  };
+
+  // Every way a drag can end goes through here. Only a real pointercancel
+  // (the browser taking the gesture over) is allowed to undo a long drag.
   const endDrag = (e, cancelled) => {
     const d = drag.current;
     if (!d || e.pointerId !== d.id) return;
     drag.current = null;
+    if (typeof e.clientX === "number" && !cancelled) track(d, e.clientX);
     cancelAnimationFrame(frame.current);
     el.current.classList.remove("is-dragging");
-    if (cancelled) return settle();
-    const { raw, vx } = d;
-    if (raw > LIKE_DISTANCE || (vx > FLICK_VELOCITY && raw > 40)) like();
-    else if (raw < -REFUSE_DISTANCE || (vx < -FLICK_VELOCITY && raw < -40)) refuse();
+    const { raw, peak } = d;
+    const vx = cancelled ? 0 : velocity(d);
+    const quickRight = !cancelled && peak > 2 * FLICK_VELOCITY && raw > QUICK_MIN && raw > d.max - PULLBACK;
+    const quickLeft = !cancelled && peak < -2 * FLICK_VELOCITY && raw < -QUICK_MIN && raw < d.min + PULLBACK;
+    if (raw > LIKE_DISTANCE || (vx > FLICK_VELOCITY && raw > FLICK_MIN) || quickRight) like();
+    else if (raw < -REFUSE_DISTANCE || (vx < -FLICK_VELOCITY && raw < -FLICK_MIN) || quickLeft) refuse();
     else settle();
   };
 
@@ -198,7 +233,7 @@ const SwipeCard = forwardRef(function SwipeCard({ card, position, onLiked, onRef
       onPointerMove={onPointerMove}
       onPointerUp={e => endDrag(e, false)}
       onPointerCancel={e => endDrag(e, true)}
-      onLostPointerCapture={e => endDrag(e, true)}
+      onLostPointerCapture={e => endDrag(e, false)}
       onDragStart={e => e.preventDefault()}
     >
       <div className="swipe-card__enter">
