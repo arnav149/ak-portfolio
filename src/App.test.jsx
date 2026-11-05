@@ -3,7 +3,7 @@ import App from "./App";
 
 beforeEach(() => {
   window.sessionStorage.setItem("ak-portfolio:booted", "1");
-  window.scrollTo = jest.fn();
+  window.scrollTo = vi.fn();
 });
 
 test("renders the portfolio with the work deck selected", () => {
@@ -21,16 +21,16 @@ test("left swipes are refused and the card stays", () => {
 });
 
 test("liking advances the deck and switching category shows personal projects", () => {
-  jest.useFakeTimers();
+  vi.useFakeTimers();
   render(<App />);
   fireEvent.click(screen.getByRole("button", { name: /like this project/i }));
   act(() => {
-    jest.advanceTimersByTime(500);
+    vi.advanceTimersByTime(500);
   });
   expect(screen.getByLabelText(/Experian Integration, 2 \/ 9/)).toBeInTheDocument();
   fireEvent.click(screen.getByRole("tab", { name: /~\/personal/ }));
   expect(screen.getByLabelText(/Wingo, 1 \/ 3/)).toBeInTheDocument();
-  jest.useRealTimers();
+  vi.useRealTimers();
 });
 
 test("shows the boot loader on a first visit", () => {
@@ -41,11 +41,11 @@ test("shows the boot loader on a first visit", () => {
 });
 
 test("liked projects expand to show their details again", () => {
-  jest.useFakeTimers();
+  vi.useFakeTimers();
   render(<App />);
   fireEvent.click(screen.getByRole("button", { name: /like this project/i }));
   act(() => {
-    jest.advanceTimersByTime(500);
+    vi.advanceTimersByTime(500);
   });
   const row = screen.getByRole("button", { name: /External Report Pulls/ });
   expect(row).toHaveAttribute("aria-expanded", "false");
@@ -56,5 +56,5 @@ test("liked projects expand to show their details again", () => {
   );
   fireEvent.click(row);
   expect(row).toHaveAttribute("aria-expanded", "false");
-  jest.useRealTimers();
+  vi.useRealTimers();
 });

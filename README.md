@@ -1,12 +1,16 @@
 # ak-portfolio
 
-Personal portfolio website built with React, hosted on GitHub Pages at https://arnav149.github.io/ak-portfolio.
+Personal portfolio website built with React and Vite, hosted on GitHub Pages at https://arnav149.github.io/ak-portfolio.
 
 ## Development
 
 ### `npm start`
 
-Runs the app in development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Runs the Vite dev server. Open [http://localhost:3000/ak-portfolio/](http://localhost:3000/ak-portfolio/) to view it in the browser.
+
+### `npm test`
+
+Runs the Vitest suite once (`npm run test:watch` to keep it running).
 
 ### `npm run build`
 
@@ -22,8 +26,8 @@ All copy (projects, experience, skills, links and the left-swipe messages) lives
 
 ## Structure
 
-- `src/App.js`: boot loader, then the single-page site
-- `src/components/BootLoader.js`: terminal loading screen (plays once per browser session; `./reboot` in the footer replays it)
-- `src/components/Projects.js`: work/personal filter, swipe and list modes, liked panel
-- `src/components/SwipeCard.js`: the draggable card (pointer events, written directly to the DOM so drags never re-render)
-- `src/components/Sections.js`: hero, git-log experience, skills and contact
+- `src/App.jsx`: boot loader, then the single-page site
+- `src/components/BootLoader.jsx`: terminal loading screen (plays once per browser session; `./reboot` in the footer replays it)
+- `src/components/Projects.jsx`: work/personal filter, swipe and list modes, liked panel
+- `src/components/SwipeCard.jsx`: the draggable card (pointer events, written directly to the DOM so drags never re-render)
+- `src/components/Sections.jsx`: hero, git-log experience, skills and contact
