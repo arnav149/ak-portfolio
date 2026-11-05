@@ -39,3 +39,22 @@ test("shows the boot loader on a first visit", () => {
   expect(screen.getByRole("status", { name: /loading portfolio/i })).toBeInTheDocument();
   fireEvent.click(screen.getByRole("button", { name: /skip/i }));
 });
+
+test("liked projects expand to show their details again", () => {
+  jest.useFakeTimers();
+  render(<App />);
+  fireEvent.click(screen.getByRole("button", { name: /like this project/i }));
+  act(() => {
+    jest.advanceTimersByTime(500);
+  });
+  const row = screen.getByRole("button", { name: /External Report Pulls/ });
+  expect(row).toHaveAttribute("aria-expanded", "false");
+  fireEvent.click(row);
+  expect(row).toHaveAttribute("aria-expanded", "true");
+  expect(screen.getByRole("region", { name: /External Report Pulls details/ })).toHaveTextContent(
+    "Restored offer eligibility"
+  );
+  fireEvent.click(row);
+  expect(row).toHaveAttribute("aria-expanded", "false");
+  jest.useRealTimers();
+});

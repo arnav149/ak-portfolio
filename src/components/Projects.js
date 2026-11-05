@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useReducer, useRef } from "react";
+import React, { useCallback, useMemo, useReducer, useRef, useState } from "react";
 import SwipeCard from "./SwipeCard";
 import Reveal from "./Reveal";
 import Prompt from "./Prompt";
@@ -67,6 +67,59 @@ const HEARTS = Array.from({ length: 12 }, (_, i) => {
 });
 
 const byId = Object.fromEntries(projects.map(p => [p.id, p]));
+
+/** A liked project that expands to show its details again. */
+function LikedItem({ project: p }) {
+  const [open, setOpen] = useState(false);
+  const panelId = `liked-${p.id}`;
+  return (
+    <li className={`liked-item${open ? " is-open" : ""}`}>
+      <button className="liked-row" aria-expanded={open} aria-controls={panelId} onClick={() => setOpen(o => !o)}>
+        <span className="dot" style={{ background: p.color }} />
+        <span className="liked-row__text">
+          <b>{p.name}</b>
+          <span className="muted small">
+            {p.kind} · {p.when}
+          </span>
+        </span>
+        <span className="pink" aria-hidden="true">
+          ♥
+        </span>
+        <svg
+          className="chevron"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M6 9l6 6 6-6" />
+        </svg>
+      </button>
+      <div id={panelId} className="liked-details" role="region" aria-label={`${p.name} details`} hidden={!open}>
+        <div className="liked-details__inner">
+          <div className="muted small">
+            $ cat {p.cmd}.md · {p.where}
+          </div>
+          <p>{p.bio}</p>
+          <div className="highlight">
+            <span className="highlight__label">Highlight</span>
+            <span>{p.highlight}</span>
+          </div>
+          <ul className="tags" aria-label="Tech">
+            {p.tags.map(t => (
+              <li key={t}>{t}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </li>
+  );
+}
 
 export default function Projects() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -346,18 +399,7 @@ export default function Projects() {
               ) : (
                 <ul className="liked-list">
                   {likedProjects.map(p => (
-                    <li key={p.id} className="liked-row">
-                      <span className="dot" style={{ background: p.color }} />
-                      <span className="liked-row__text">
-                        <b>{p.name}</b>
-                        <span className="muted small">
-                          {p.kind} · {p.when}
-                        </span>
-                      </span>
-                      <span className="pink" aria-hidden="true">
-                        ♥
-                      </span>
-                    </li>
+                    <LikedItem key={p.id} project={p} />
                   ))}
                 </ul>
               )}
